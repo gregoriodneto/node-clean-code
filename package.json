@@ -1,0 +1,19 @@
+{
+  "name": "clean-code",
+  "version": "1.0.0",
+  "description": "Projeto de Estudo de NodeJS com Clean Code",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/main.ts",
+    "dev": "node --loader ts-node/esm src/main.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  }
+}

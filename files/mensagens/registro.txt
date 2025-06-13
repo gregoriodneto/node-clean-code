@@ -1,0 +1,2 @@
+Olá, mundo!
+Nova mensagem registrada.
