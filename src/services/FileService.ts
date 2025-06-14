@@ -21,4 +21,9 @@ export class FileService {
         const content: string = await this.fileManager.readFile(fileName);
         console.log('Conteúdo do arquivo:\n', content);
     }
+
+    async show(fileName: string) {
+        const content: string = await this.fileManager.readFile(fileName);
+        return content;
+    }
 }
