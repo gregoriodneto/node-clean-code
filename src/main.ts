@@ -1,6 +1,8 @@
+import { EventEmitterCustom } from "./core/EventEmitterCustom.ts";
 import { EventTypes } from "./core/EventTypes.ts";
 import { EventEmitterService } from "./services/EventEmitterService.ts";
 import { FileService } from "./services/FileService.ts";
+import { FileWatcherService } from "./services/FileWatcherService.ts";
 import { Logger } from "./utils/logger.ts";
 
 function sum(data: number[]): Promise<void> {
@@ -14,19 +16,32 @@ function sum(data: number[]): Promise<void> {
 }
 
 async function main() {
-    const fileName: string = 'registro.txt';
-    const service: FileService = new FileService('mensagens');
-    await service.saveMessage(fileName, 'Olá, mundo!');
-    await service.saveMessage(fileName, 'Nova mensagem registrada.')
-    await service.showContent(fileName);
+    try {
+        const fileName: string = 'registro.txt';
+        const service: FileService = new FileService('mensagens');
+        await service.saveMessage(fileName, 'Olá, mundo!');
+        await service.saveMessage(fileName, 'Nova mensagem registrada.')
+        await service.showContent(fileName);
 
-    const emitterService = new EventEmitterService();
+        const emitter = EventEmitterCustom.emitter;
 
-    emitterService.eventOn(EventTypes.PROCESS_DATA, async (data: number[]) => {
-        await sum(data);
-    });
+        const emitterService = new EventEmitterService(emitter);
+        const watcher = new FileWatcherService('mensagens', emitter);
+        watcher.startWatching();
 
-    emitterService.eventEmit(EventTypes.PROCESS_DATA, [1, 2, 3, 4]);
+        emitterService.eventOn(EventTypes.PROCESS_DATA, async (data: number[]) => {
+            await sum(data);
+        });
+
+        emitterService.eventEmit(EventTypes.PROCESS_DATA, [1, 2, 3, 4]);
+
+        setTimeout(() => {
+            Logger.log('Encerrando o Watcher...')
+            process.exit(0);
+        }, 10000);
+    } catch (error) {
+        Logger.error(`Erro no main: ${error}`);
+    }
 }
 
 main();

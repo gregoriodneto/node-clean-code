@@ -1,12 +1,11 @@
 import EventEmitter from "events";
-import { EventEmitterCustom } from "../core/EventEmitterCustom.ts";
 import { AppEvents } from "../core/AppEvents.ts";
 
 export class EventEmitterService {
     private emitter: EventEmitter;
 
-    constructor() {
-        this.emitter = EventEmitterCustom.emitter;
+    constructor(emitter: EventEmitter) {
+        this.emitter = emitter;
     }
 
     eventEmit<K extends keyof AppEvents>(event: K, data: AppEvents[K]) {
