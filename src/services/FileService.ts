@@ -17,13 +17,9 @@ export class FileService {
         }
     }
 
-    async showContent(fileName: string): Promise<void> {
+    async showContent(fileName: string): Promise<string[]> {
         const content: string = await this.fileManager.readFile(fileName);
         console.log('Conteúdo do arquivo:\n', content);
-    }
-
-    async show(fileName: string) {
-        const content: string = await this.fileManager.readFile(fileName);
-        return content;
+        return content.split("\n");
     }
 }

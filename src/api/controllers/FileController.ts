@@ -25,7 +25,7 @@ export class FileController {
             res.status(HttpStatus.BAD_REQUEST).json({ message: 'Filename é obrigatório.' });
         }
         try {
-            const content = await this.fileService.show(filename);
+            const content = await this.fileService.showContent(filename);
             res.status(HttpStatus.OK).json({ message: 'Mensagens carregadas com sucesso.', content });
         } catch (error) {
             res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({ message: 'Erro ao ler o arquivo.', error });
