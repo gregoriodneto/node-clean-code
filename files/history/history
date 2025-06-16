@@ -18,3 +18,9 @@
 [2025-06-16T14:06:33.827Z] [/history] Carregamento de Histórico.
 [2025-06-16T14:07:07.168Z] [/history] Carregamento de Histórico.
 [2025-06-16T14:07:24.771Z] [/history] Carregamento de Histórico.
+[2025-06-16T20:08:29.967Z] Erro ao executar o seed: Error: ORA-06550: line 13, column 17:
+PLS-00103: Encountered the symbol "IF" when expecting one of the following:
+
+   pragma when
+Help: https://docs.oracle.com/error-help/db/ora-06550/
+[2025-06-16T20:09:06.985Z] Seed executado com sucesso!
