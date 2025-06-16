@@ -1,13 +1,17 @@
+import { Datas } from "./datas.ts";
+
 export class Logger {
     constructor() {}
 
-    static log(message: string): void {
-        const timestamp: string = new Date().toISOString();
-        console.log(`[${timestamp}] ${message}`);
+    static log(message: string, saveToHistory: boolean = true): string {
+        const messageFormatted: string = Datas.dataTimestampFormmattedLogger(message);        
+        console.log(messageFormatted);
+        return messageFormatted;
     }
 
-    static error(message: string): void {
-        const timestamp: string = new Date().toString();
-        console.error(`[${timestamp}] ${message}`);
+    static error(message: string, saveToHistory: boolean = true): string {
+        const messageFormatted: string = Datas.dataTimestampFormmattedLogger(message);
+        console.error(messageFormatted);
+        return messageFormatted;
     }
 }
