@@ -1,4 +1,6 @@
 import { ENV } from "../config/env.ts";
+import { TypeLogs } from "../infrastructure/domains/enums/TypeLogs.ts";
+import { HistoryRepository } from "../infrastructure/repositories/HistoryRepository.ts";
 import { Datas } from "../utils/datas.ts";
 import { Filters } from "../utils/Filters.ts";
 import { FileService } from "./FileService.ts";
@@ -12,9 +14,10 @@ export class HistoryService {
         return FileService.getInstance(ENV.FOLDER_NAME_HISTORY);
     }
 
-    static async save(message: string) {
+    static async save(message: string, type: TypeLogs = TypeLogs.INFO, path: string = '/api') {
         const messageFormatted: string = Datas.dataTimestampFormmattedLogger(message);
         await this.fileService.saveMessage(this._filename, messageFormatted);
+        await HistoryRepository.instance.save(message, type, path);
     }
 
     static async getAll(error: string | undefined = '', timestamp: string | undefined = '') {

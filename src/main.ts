@@ -1,5 +1,6 @@
 import { EventEmitterCustom } from "./core/EventEmitterCustom.ts";
 import { EventTypes } from "./core/EventTypes.ts";
+import { TypeLogs } from "./infrastructure/domains/enums/TypeLogs.ts";
 import { EventEmitterService } from "./services/EventEmitterService.ts";
 import { FileService } from "./services/FileService.ts";
 import { FileWatcherService } from "./services/FileWatcherService.ts";
@@ -10,10 +11,10 @@ function sum(data: number[]): Promise<void> {
     return new Promise<void>((resolve) => {
         setTimeout(() => {
             Logger.log(`Processando dados: ${data}`);
-            HistoryService.save(`Processando dados: ${data}`);
+            HistoryService.save(`Processando dados: ${data}`, TypeLogs.INFO, 'main');
             const sum: number = data.reduce((acc, curr) => acc + curr, 0);
             Logger.log(`Soma dos valores processados: ${sum}`);
-            HistoryService.save(`Soma dos valores processados: ${sum}`);
+            HistoryService.save(`Soma dos valores processados: ${sum}`, TypeLogs.INFO, 'main');
         }, 3000);
     });
 }
@@ -40,12 +41,12 @@ async function main() {
 
         setTimeout(() => {
             Logger.log('Encerrando o Watcher...')
-            HistoryService.save('Encerrando o Watcher...');
+            HistoryService.save('Encerrando o Watcher...', TypeLogs.INFO, 'main');
             process.exit(0);
         }, 10000);
     } catch (error) {
         Logger.error(`Erro no main: ${error}`);
-        HistoryService.save(`Erro no main: ${error}`);
+        HistoryService.save(`Erro no main: ${error}`, TypeLogs.ERROR, 'seed');
     }
 }
 

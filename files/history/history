@@ -24,3 +24,12 @@ PLS-00103: Encountered the symbol "IF" when expecting one of the following:
    pragma when
 Help: https://docs.oracle.com/error-help/db/ora-06550/
 [2025-06-16T20:09:06.985Z] Seed executado com sucesso!
+[2025-06-16T23:31:15.391Z] [/file/:filename] Buscando todas as mensagens salvas no arquivo registro.txt.
+[2025-06-16T23:31:15.443Z] [/file/:filename] Erro ao ler o arquivo registro.txt. Error: NJS-503: connection to host 127.0.0.1 port 1521 could not be established. (CONNECTION_ID=p4ADXHWClGDtvR9RSF57gg==)
+connect ECONNREFUSED 127.0.0.1:1521
+[2025-06-16T23:32:10.799Z] [/file/:filename] Buscando todas as mensagens salvas no arquivo registro.txt.
+[2025-06-16T23:32:10.958Z] [/file/:filename] Erro ao ler o arquivo registro.txt. Error: NJS-098: 4 bind placeholders were used in the SQL statement but 5 bind values were provided
+[2025-06-16T23:33:17.472Z] [/file/:filename] Buscando todas as mensagens salvas no arquivo registro.txt.
+[2025-06-16T23:59:40.657Z] [/file/:filename] Buscando todas as mensagens salvas no arquivo registro.txt.
+[2025-06-17T00:08:55.105Z] [/file/:filename] Buscando todas as mensagens salvas no arquivo registro.txt.
+[2025-06-17T00:09:03.920Z] [/history] Carregamento de Histórico.

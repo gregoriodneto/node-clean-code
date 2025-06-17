@@ -1,3 +1,4 @@
+import { TypeLogs } from '../src/infrastructure/domains/enums/TypeLogs.ts';
 import { Conn } from './../src/infrastructure/db/conn.ts';
 import { HistoryService } from './../src/services/HistoryService.ts';
 import { Logger } from './../src/utils/logger.ts';
@@ -27,10 +28,10 @@ async function seed() {
         `);
 
         Logger.log(`Seed executado com sucesso!`);
-        HistoryService.save(`Seed executado com sucesso!`);
+        HistoryService.save(`Seed executado com sucesso!`, TypeLogs.INFO, 'seed');
     } catch (error) {
         Logger.error(`Erro ao executar o seed: ${error}`);
-        HistoryService.save(`Erro ao executar o seed: ${error}`);
+        HistoryService.save(`Erro ao executar o seed: ${error}`, TypeLogs.ERROR, 'seed');
     } finally {
         await Conn.instance.close();
     }
